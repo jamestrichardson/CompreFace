@@ -1,0 +1,51 @@
+version: 2
+updates:
+  # Maven dependencies for Java services
+  - package-ecosystem: "maven"
+    directory: "/java"
+    schedule:
+      interval: "weekly"
+    target-branch: "master"
+    labels:
+      - "java"
+      - "dependencies"
+
+  # npm dependencies for UI
+  - package-ecosystem: "npm"
+    directory: "/ui"
+    schedule:
+      interval: "weekly"
+    target-branch: "master"
+    labels:
+      - "javascript"
+      - "dependencies" 
+
+  # pip dependencies for Python embedding calculator
+  - package-ecosystem: "pip"
+    directory: "/embedding-calculator"
+    schedule:
+      interval: "weekly"
+    target-branch: "master"
+    labels:
+      - "python"
+      - "dependencies"
+
+  # Docker dependencies
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    target-branch: "master"
+    labels:
+      - "docker"
+      - "dependencies"
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    target-branch: "master"
+    labels:
+      - "ci-cd"
+      - "dependencies"
