@@ -34,7 +34,7 @@
         <spring-security-oauth2.version>2.5.0.RELEASE</spring-security-oauth2.version>
         <spring-cloud.version>2020.0.5</spring-cloud.version>
 
-        <mapstruct.version>1.5.2.Final</mapstruct.version>
+        <mapstruct.version>1.6.3</mapstruct.version>
         <lombok.version>1.18.20</lombok.version>
         <swagger.version>2.9.2</swagger.version>
         <io.jsonwebtoken.version>0.11.2</io.jsonwebtoken.version>
