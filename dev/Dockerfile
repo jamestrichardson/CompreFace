@@ -14,14 +14,14 @@ RUN if [ "$TARGETARCH" = "arm64" ]; then \
 
 WORKDIR /workspace/compreface
 LABEL intermidiate_frs=true
-COPY pom.xml .
-COPY api/pom.xml api/
-COPY admin/pom.xml admin/
-COPY common/pom.xml common/
+COPY java/pom.xml .
+COPY java/api/pom.xml api/
+COPY java/admin/pom.xml admin/
+COPY java/common/pom.xml common/
 RUN mvn -B clean install -DskipTests -Dcheckstyle.skip -Dasciidoctor.skip -Djacoco.skip -Dmaven.gitcommitid.skip -Dspring-boot.repackage.skip -Dmaven.exec.skip=true -Dmaven.install.skip -Dmaven.resources.skip
-COPY api api
-COPY admin admin
-COPY common common
+COPY java/api api
+COPY java/admin admin
+COPY java/common common
 RUN mvn package -Dmaven.test.skip=true -Dmaven.site.skip=true -Dmaven.javadoc.skip=true -Dnd4j.classifier=$ND4J_CLASSIFIER
 
 FROM eclipse-temurin:17-jre-focal AS frs_core

@@ -8,24 +8,35 @@ IMAGE_TAG="latest"
 PLATFORMS="linux/amd64,linux/arm64"
 BUILD_OPTS="--no-cache --push"
 
-# Component definitions
-declare -A COMPONENTS=(
-    ["admin"]="frs_crud:../dev/Dockerfile:."
-    ["api"]="frs_core:../dev/Dockerfile:."
-    ["db"]=".:db/Dockerfile:db/"
-    ["fe"]=".:ui/docker-prod/Dockerfile:ui/"
-    ["core"]=".:embedding-calculator/Dockerfile:embedding-calculator/"
-)
+# Component definitions (compatible with bash 3.2)
+get_component_config() {
+    case "$1" in
+        "admin") echo "frs_crud:dev/Dockerfile:." ;;
+        "api") echo "frs_core:dev/Dockerfile:." ;;
+        "db") echo ".:db/Dockerfile:db/" ;;
+        "fe") echo ".:ui/docker-prod/Dockerfile:ui/" ;;
+        "core") echo ".:embedding-calculator/Dockerfile:embedding-calculator/" ;;
+        *) echo "" ;;
+    esac
+}
+
+# List of all available components
+ALL_COMPONENTS="admin api db fe core"
 
 # Function to build a single component
 build_component() {
     local name=$1
-    local config=${COMPONENTS[$name]}
+    local config=$(get_component_config "$name")
     local target
     local dockerfile
     local context
     local target_opt
-    
+
+    if [ -z "$config" ]; then
+        echo "Error: Unknown component '$name'"
+        return 1
+    fi
+
     target=$(echo "$config" | cut -d: -f1)
     dockerfile=$(echo "$config" | cut -d: -f2)
     context=$(echo "$config" | cut -d: -f3)
@@ -46,7 +57,7 @@ build_component() {
 
 # Function to build all components
 build_all() {
-    for component in "${!COMPONENTS[@]}"; do
+    for component in $ALL_COMPONENTS; do
         build_component "$component"
     done
 }
@@ -59,7 +70,7 @@ usage() {
     echo "  -l, --list             List available components"
     echo "  -v, --version VERSION  Set the image tag version (default: latest)"
     echo "Components:"
-    for component in "${!COMPONENTS[@]}"; do
+    for component in $ALL_COMPONENTS; do
         echo "  $component"
     done
 }
@@ -67,7 +78,7 @@ usage() {
 # List available components
 list_components() {
     echo "Available components:"
-    for component in "${!COMPONENTS[@]}"; do
+    for component in $ALL_COMPONENTS; do
         echo "  $component"
     done
 }
@@ -111,7 +122,8 @@ if [[ $# -eq 0 ]]; then
 else
     # Build specified components
     for component in "$@"; do
-        if [[ -n "${COMPONENTS[$component]:-}" ]]; then
+        config=$(get_component_config "$component")
+        if [[ -n "$config" ]]; then
             build_component "$component"
         else
             echo "Error: Unknown component '$component'"
