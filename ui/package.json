@@ -31,7 +31,7 @@
     "@ng-web-apis/intersection-observer": "^2.1.0",
     "@ngrx/data": "^10.0.1",
     "@ngrx/effects": "^10.0.1",
-    "@ngrx/entity": "^10.0.1",
+    "@ngrx/entity": "^20.0.1",
     "@ngrx/router-store": "^10.0.1",
     "@ngrx/schematics": "^10.0.1",
     "@ngrx/store": "^10.0.1",
