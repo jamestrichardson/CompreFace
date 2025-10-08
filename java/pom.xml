@@ -53,7 +53,7 @@
         <greenmail-junit5.version>1.6.10</greenmail-junit5.version>
 
         <liquibase-maven-plugin.version>3.8.4</liquibase-maven-plugin.version>
-        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.5.4</maven-surefire-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
 
         <nd4j.classifier>linux-x86_64</nd4j.classifier>
