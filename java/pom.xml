@@ -44,7 +44,7 @@
         <ehcache.version>2.7.2</ehcache.version>
         <javax-cache.version>1.1.1</javax-cache.version>
         <logstash-logback-encoder.version>7.2</logstash-logback-encoder.version>
-        <hibernate-types.version>2.16.2</hibernate-types.version>
+        <hibernate-types.version>2.21.1</hibernate-types.version>
         <nd4j.version>1.0.0-beta7</nd4j.version>
         <liquibase.version>4.8.0</liquibase.version>
         <pgjdbc-ng.version>0.8.9</pgjdbc-ng.version>
