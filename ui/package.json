@@ -26,7 +26,7 @@
     "@angular/material": "^11.0.3",
     "@angular/platform-browser": "~11.0.5",
     "@angular/platform-browser-dynamic": "~11.0.5",
-    "@angular/router": "~11.0.5",
+    "@angular/router": "~20.3.6",
     "@ng-web-apis/common": "^2.0.1",
     "@ng-web-apis/intersection-observer": "^2.1.0",
     "@ngrx/data": "^10.0.1",
